@@ -1,0 +1,2 @@
+https://app.swaggerhub.com/apis/PZAICEV223/swagger-offers_store_mc_1_open_api_3_0/1.0.1
+https://app.swaggerhub.com/apis/PZAICEV223/swagger-offers_store_mc_2_open_api_3_0/1.0.1

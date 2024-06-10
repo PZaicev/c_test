@@ -1,0 +1,11 @@
+spring:
+  data:
+    mongodb:
+      authentication-database: offers_db_dev
+      username: api_user_dev
+      password: apipwd
+      database: offers_db_dev
+      port: 27017
+      host: localhost
+      auto-index-creation: true
+      collection: selection_offers

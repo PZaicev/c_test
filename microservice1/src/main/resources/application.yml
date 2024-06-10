@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: microservice1
+  cloud:
+    openfeign:
+      httpclient:
+        connection-timeout: 5000
+        ok-http:
+          read-timeout: 5000
+
+server:
+  servlet:
+    context-path: /api
+
+credit-service-client:
+  name: credit-service
+  domain-url: http://localhost:8081
+  post-credit:
+    url: /api/v1/offers
+  get-credit:
+    url: /api/v1/offers
+
+
+

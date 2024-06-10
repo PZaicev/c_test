@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "04594b56-45ea-4edc-9db4-1b1232e2025a",
+		"name": "microservice1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32182520"
+	},
+	"item": [
+		{
+			"name": "getCredit",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Client-Id",
+						"value": "123e4567-e89b-12d3-a456-426655440002"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/credits",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"credits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postCredit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Client-Id",
+						"value": "123e4567-e89b-12d3-a456-426655440002"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"offerId\": \"123e4567-e89b-12d3-a456-426655440000\",\r\n    \"offerType\": \"STANDARD\",\r\n    \"verificationRequired\": true,\r\n    \"proofIncomeRequired\": \"N\",\r\n    \"identityDocumentsRequired\": false,\r\n    \"productSubTypeCode\": \"subtype\",\r\n    \"term\": 1,\r\n    \"rate\": 12.5,\r\n    \"amount\": 500000,\r\n    \"amountOverLimit\": 450000,\r\n    \"insurancePremium\": 1,\r\n    \"commissionAmount\": 5000,\r\n    \"discountRate\": 1.2,\r\n    \"refinancingAmount\": 100000,\r\n    \"refinancingCredits\": [\r\n        {\r\n            \"orderNum\": 111,\r\n            \"amount\": 2000\r\n        },\r\n                {\r\n            \"orderNum\": 123,\r\n            \"amount\": 2000\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/credits",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"credits"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

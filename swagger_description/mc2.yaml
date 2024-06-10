@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: Swagger OffersStore MC2 - OpenAPI 3.0
+  description: |-
+      This document contains a description of the microservice2
+  version: 1.0.1
+servers:
+  - url: http://localhost:8081/api/v1
+tags:
+  - name: offers
+    description: Allows you to create and view loaded offers
+paths:
+  /offers:
+    get:
+      tags:
+        - offers
+      description: Get credit offer by Client Id
+      operationId: selectionOffer
+      parameters:
+        - in: header
+          name: Client-Id
+          schema:
+            type: string
+            format: uuid
+          required: true
+          example: 123e4567-e89b-12d3-a456-426655440001
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credit' 
+        '400':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse' 
+        '500':
+          description: Internal server exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse' 
+    post:
+      tags:
+        - offers
+      summary: Add a new credit offer to the store
+      operationId: preservationOffer
+      description: Create a new credit offer in the store
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credit'
+        required: true
+      responses:
+        '201':
+          description: Successful operation
+        '400':
+          description: Validation exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse' 
+        '500':
+          description: Internal server exception
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse' 
+components:
+  schemas:
+    Credit:
+      type: object
+      nullable: true
+      properties:
+        clientId:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426655440001
+        offerId:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426655440000
+          nullable: true
+        offerType:
+          type: string
+          example: PREMIUM
+          nullable: true
+        verificationRequired:
+          type: boolean
+          example: true
+          nullable: true
+        proofIncomeRequired:
+          type: string
+          example: Y
+          nullable: true
+        identityDocumentsRequired:
+          type: boolean
+          example: true
+          nullable: true
+        productSubTypeCode:
+          type: string
+          example: subtype
+          nullable: true
+        term:
+          type: integer
+          example: 6
+          nullable: true
+        rate:
+          type: number
+          example: 12.5
+          nullable: true
+        amount:
+          type: number
+          format: double
+          example: 500000
+          nullable: true
+        amountOverLimit:
+          type: number
+          format: double
+          example: 450000
+          nullable: true
+        insurancePremium:
+          type: number
+          format: double
+          example: 10000
+          nullable: true
+        commissionAmount:
+          type: number
+          format: double
+          example: 5000
+          nullable: true
+        discountRate:
+          type: number
+          format: double
+          nullable: true
+        refinancingAmount:
+          type: number
+          format: double
+          example: 5000
+          nullable: true
+        refinancingCredits:
+          type: array
+          nullable: true
+          items: 
+            $ref: '#/components/schemas/RefinancingCredit'
+    RefinancingCredit:
+      type: object
+      nullable: true
+      properties:
+        orderNum:
+          type: integer
+          example: 1
+          nullable: true
+        amount:
+          type: number
+          format: double
+          example: 20000
+          nullable: true
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: BAD_REQUEST
+        code:
+          type: integer
+          example: 400
+        timestamp:
+          type: string
+          format: date-time
+          example: 2024-06-10T03:18:22.237+03:00
+        message:
+          type: string
+          example: Validation Exception
+        description: 
+          type: string
+          example: Correct your request regarding error messages
+        path:
+          type: string
+          example: /api/v1/credits
+        errors:
+          type: array
+          items:
+            type: string
+            example: clientId - invalid UUID character sequence
